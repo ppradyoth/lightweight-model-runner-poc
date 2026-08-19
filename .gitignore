@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+models/
+docs/*
+!docs/.gitkeep
+index.faiss
+chunks.jsonl
