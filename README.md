@@ -1,10 +1,20 @@
-# Run a private RAG assistant on one machine
+# Private AI in 4 Python files: local RAG with Qwen, FAISS, and llama.cpp
 
-A deliberately small proof of concept for teams evaluating on-premises LLM applications.
+Run a private, offline document assistant on one machine. This is a deliberately small local RAG proof of concept for teams evaluating on-premises LLM applications, self-hosted AI, edge AI, and air-gapped inference.
 
-It indexes local Markdown, PDF, and text files, retrieves relevant passages with FAISS, and answers with a quantized Qwen2.5 1.5B model through `llama.cpp`. Once the model files are downloaded, document ingestion and inference stay on the machine.
+It indexes local Markdown, PDF, and text files, retrieves relevant passages with FAISS vector search, and answers with a quantized Qwen2.5 1.5B GGUF model through `llama.cpp`. Once the model files are downloaded, document ingestion and inference stay on the machine.
 
-No hosted vector database. No model API. No application server. Four Python files.
+No OpenAI API. No hosted vector database. No cloud inference. No application server. Four Python files.
+
+**Private documents in. Source-grounded answers out. No model-provider calls after setup.**
+
+## The 60-second version
+
+- **Private AI:** prompts, retrieved text, and generated answers stay local after model setup.
+- **Offline RAG:** Qwen2.5 GGUF inference, MiniLM embeddings, and FAISS retrieval run on-device.
+- **Enterprise evaluation starting point:** small enough to audit before adding your own identity, access, security, and deployment controls.
+- **Real document Q&A:** ingest PDFs, Markdown, and text. Get an answer plus the source filenames.
+- **No framework maze:** the entire retrieval and inference path fits in `ingest.py`, `rag.py`, and `cli.py`.
 
 ## Why this exists
 
@@ -22,7 +32,9 @@ question -> local embedding -> top-k retrieval -----+
                                       local GGUF model -> answer + sources
 ```
 
-Use it to answer a practical first question: can a useful document assistant run inside our environment without sending document content or prompts to a model provider?
+Use it to answer a practical first question: can a useful private knowledge assistant run inside our environment without sending document content or prompts to a model provider?
+
+This is for teams searching for a minimal local LLM example, offline RAG pipeline, self-hosted document chatbot, private enterprise search POC, or air-gapped generative AI starting point without adopting a full platform first.
 
 ## What it proves
 
